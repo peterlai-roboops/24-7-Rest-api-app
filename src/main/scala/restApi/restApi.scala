@@ -1,8 +1,8 @@
-package websiteMapGenerator
+package restApi
 
 import scala.util.Try
 
-object siteMapGenerator {
+object restApi {
 
   def main(args: Array[String]): Unit = {
     if (args.length == 0)
