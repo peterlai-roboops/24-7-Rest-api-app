@@ -7,10 +7,12 @@ repositories{
 
 buildscript { //For the plugins
     repositories {
+        jcenter()
 		mavenCentral()
     }
     dependencies {
         classpath 'com.github.rholder:gradle-one-jar:1.0.4'
+        classpath 'com.bmuschko:gradle-docker-plugin:3.0.8'
     }
 }
 
@@ -30,8 +32,8 @@ jar {
     
 dependencies {
     compile ( 
-            [group: 'org.scala-lang', name: 'scala-library', version: '2.11.8'], 
-            [group: 'org.scala-lang', name: 'scala-compiler', version: '2.11.8']
+            [group: 'org.scala-lang', name: 'scala-library', version: '2.12.2'],
+            [group: 'org.scala-lang', name: 'scala-compiler', version: '2.12.2']
     )
 }
 
