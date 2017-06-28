@@ -9,6 +9,8 @@ package restApi
 object restApi {
 
   def main(args: Array[String]): Unit = {
-    println("restapi")
+    println("restapi is running yo!")
   }
+
+  //todo need to starting writing a restapi app
  }

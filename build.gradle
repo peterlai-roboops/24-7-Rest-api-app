@@ -1,5 +1,9 @@
 apply plugin: 'gradle-one-jar'
 apply plugin: 'scala'
+apply plugin: 'com.bmuschko.docker-java-application'
+
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.DockerRegistryCredentials
 
 repositories{
 	mavenCentral()
@@ -29,7 +33,25 @@ jar {
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
 
-    
+def dockerRegistryCredentials = new DockerRegistryCredentials()
+    dockerRegistryCredentials.url       = 'https://fastregistry.net/v2/_catalog'
+    dockerRegistryCredentials.username  = 'peterlai'
+    dockerRegistryCredentials.password  = 'xxxxx'
+    dockerRegistryCredentials.email     = 'peter.lai@hotmail.co.uk'
+
+
+//Making the docker image, can be deleted unless we expect the image to constantly need updating.
+task buildImage(type: DockerBuildImage) {
+    inputDir = project.file("docker/")
+    tag = 'peterlai/rest-api'
+    registryCredentials = dockerRegistryCredentials
+}
+
+//For generating a wrapper, can be deleted
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.0' //version required
+}
+
 dependencies {
     compile ( 
             [group: 'org.scala-lang', name: 'scala-library', version: '2.12.2'],
