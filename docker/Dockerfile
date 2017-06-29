@@ -5,7 +5,7 @@ FROM java:8
 ENV SCALA_VERSION 2.12.2
 ENV SCALA_TARBALL http://www.scala-lang.org/files/archive/scala-$SCALA_VERSION.deb
 
-
+ADD restApi.jar /home/restApi.jar
 RUN \
     echo "==> Install curl helper tool..."  && \
     apt-get update  && \
@@ -36,12 +36,12 @@ RUN \
 
 
 # print versions
-#RUN java -version
+RUN java -version
 
 # scala -version returns code 1 instead of 0 thus "|| true"
-#RUN scala -version || true
+RUN scala -version || true
 
 
 
 # Define default command.
-CMD ["scala"]
+#CMD ["ls home/"]

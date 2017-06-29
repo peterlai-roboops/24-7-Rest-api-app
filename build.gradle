@@ -20,7 +20,7 @@ buildscript { //For the plugins
 }
 
 tasks.withType(Jar) { 
-    destinationDir = file(".")
+    destinationDir = file("./docker")
 }
 
 jar {
